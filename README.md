@@ -1,6 +1,6 @@
 ## Welcome to Nasa Image Gallery
 
-(#Live-Demo)
+Live Demo
 
 ### Description
 
