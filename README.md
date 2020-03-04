@@ -2,7 +2,7 @@
 
 [Live Demo](https://nasa-flickr-gallery.netlify.com/)
 
-![Image description](link-to-image)
+![](src/assets/screenShotOfHomePage.png)
 
 
 ### Description
