@@ -12,9 +12,9 @@ The app is fully responsive and can be used in all types of devices.
 
 ### Built with
 
-HTML5
-CSS3
-JavaScript
-React
-RESTful APIs
-VSCode
+* HTML5
+* CSS3
+* JavaScript
+* React
+* RESTful APIs
+* VSCode
