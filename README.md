@@ -1,4 +1,4 @@
-## Welcome to Nasa Image Gallery
+# Welcome to Nasa Image Gallery
 
 [Live Demo](https://nasa-flickr-gallery.netlify.com/)
 
