@@ -2,10 +2,6 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 
 class Gallery extends Component {
-    state = {
-        isLoaded: false
-    }
-
     truncate = (str) => {
         return str.length > 30 ? str.substring(0, 25) + "..." : str;
     }
