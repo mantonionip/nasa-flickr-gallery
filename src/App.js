@@ -13,8 +13,8 @@ class App extends Component {
       photos: [],
       sortedPhotos: []
     };
-    this.apiKey = `a5e95177da353f58113fd60296e1d250`;
-    this.nasaUserID = `24662369@N07`;
+    this.apiKey = process.env.REACT_APP_FLICKR_API_KEY;
+    this.nasaUserID = process.env.REACT_APP_NASA_USER_ID;
   }
 
   componentDidMount() {
