@@ -13,13 +13,13 @@ class Gallery extends Component {
                     <Router>
                         <Route>
                             <Link to="/" onClick={() => this.props.clickSortDate()} style={{ textDecoration: 'none' }}>
-                                <h4 className="">Sort by Date</h4>
+                                <button className="">Sort by Date</button>
                             </Link>
                                 <Link to="/" onClick={() => this.props.clickSortViews()} style={{ textDecoration: 'none' }}>
-                                <h4 className="">Sort by View</h4>
+                                <button className="">Sort by View</button>
                             </Link>
                                 <Link to="/" onClick={() => this.props.clickSortTitle()} style={{ textDecoration: 'none' }}>
-                                <h4 className="">Sort by Name</h4>
+                                <button className="">Sort by Name</button>
                             </Link>
                         </Route>
                     </Router>

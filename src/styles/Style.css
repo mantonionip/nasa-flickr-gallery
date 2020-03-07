@@ -85,15 +85,17 @@ h1 {
     display: flex;
 }
 
-h4 {
+button {
+    font-family: 'Barlow Condensed', sans-serif;
     display: inline;
+    background-color: #FC3C21;
     color: #fff;
     padding: 10px 40px;
     border: 2px solid #fff;
     border-radius: 50px;
 }
 
-h4:hover {
+button:hover {
     background-color: #fff;
     color: #FC3C21;
     transition: all .75s;
@@ -187,7 +189,7 @@ h4:hover {
         font-size: 2.8rem;
     }
 
-    h4 {
+    button {
         padding: 8px 25px;
     }
 
@@ -221,7 +223,7 @@ h4:hover {
         padding: 20px 0;
     }
 
-    h4 {
+    button {
         padding: 10px 120px;
     }
 
@@ -260,7 +262,7 @@ h4:hover {
         top: 65%;
     }
 
-    h4 {
+    button {
         padding: 10px 90px;
     }
 
