@@ -3,20 +3,25 @@ import './styles/Style.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import axios from 'axios';
 import Header from './components/Header';
+import Sort from './components/Sort';
 import Gallery from './components/Gallery';
 import Footer from './components/Footer';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.clickSortDate = this.clickSortDate.bind(this);
+    this.clickSortViews = this.clickSortViews.bind(this);
+    this.clickSortTitle = this.clickSortTitle.bind(this);
     this.state = {
-      photos: [],
-      sortedPhotos: []
+      photos: props.photos,
+      sortedPhotos: props.sortedPhotos
     };
     this.apiKey = `a5e95177da353f58113fd60296e1d250`;
     this.nasaUserID = `24662369@N07`;
   }
 
+  // Lifecycle Method - Fetching the Data
   componentDidMount() {
     axios.get(`https://api.flickr.com/services/rest/?method=flickr.people.getPublicPhotos&api_key=${this.apiKey}&user_id=${this.nasaUserID}&extras=date_upload%2C+date_taken%2C+owner_name%2C+views&format=json&nojsoncallback=1`)
       .then(res => {
@@ -47,50 +52,53 @@ class App extends Component {
 
   clickSortDate = () => {
     const sortedDates = this.sortByDate(this.state.sortedPhotos);
-    this.setState({
-      sortedPhotos: sortedDates
-    });
+    this.setState(() => ({ sortedPhotos: sortedDates })); // implicit return
   };
 
-  // Sorting photos by numnber of views
+  // Sorting photos by numnber of views using ternary operator
   clickSortViews = () => {
-    const sortByViews = this.state.sortedPhotos.sort(function(a, b) {
-      return b.views - a.views
-    })
-    this.setState({
-      sortedPhotos: sortByViews
-    })
+    const sortByViews = this.state.sortedPhotos.sort((a, b) => b.views - a.views);
+    this.setState(() => ({ sortedPhotos: sortByViews })); // implicit return
   }
 
   // Sorting photos by title using ternary operator
   clickSortTitle = () => {
     const sortByTitle = this.state.sortedPhotos.sort((a, b) => a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1);
-    this.setState({
-      sortedPhotos: sortByTitle
-    })
+    this.setState(() => {
+      return {
+        sortedPhotos: sortByTitle
+      } //explicit return
+    });
   }
 
   render() {
     return (
       <Fragment>
       <Header />
-        <div className="">
-          <Router>
-            <Route path="/" exact render={() => 
-              <Gallery 
-                clickSortDate={this.clickSortDate}
-                clickSortViews={this.clickSortViews}
-                clickSortTitle={this.clickSortTitle}
-                sortedPhotos={this.state.sortedPhotos}
-                photos={this.state.photos}  
-              />
-            } /> 
-          </Router>      
-          <Footer />
-        </div>
+      <Router>
+        <Route path="/" exact render={() => 
+          <Sort 
+          clickSortDate={this.clickSortDate}
+          clickSortViews={this.clickSortViews}
+          clickSortTitle={this.clickSortTitle}
+          />
+        } />
+        <Route path="/" exact render={() => 
+          <Gallery 
+          sortedPhotos={this.state.sortedPhotos}
+          photos={this.state.photos}  
+          />
+        } /> 
+      </Router>      
+      <Footer />
       </Fragment>
     );
   }
+}
+
+App.defaultProps = {
+  photos: [],
+  sortedPhotos: []
 }
 
 export default App;

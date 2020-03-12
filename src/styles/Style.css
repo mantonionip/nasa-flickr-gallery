@@ -44,7 +44,7 @@ header {
     background-repeat: no-repeat;
     background-position: top;
     background-size: cover;
-    height: 50vh;
+    height: 90vh;
 }
 
 .header-img-container {
@@ -81,11 +81,11 @@ h1 {
     background-color: #FC3C21;
     justify-content: space-around;
     align-items: center;
-    height: 80px;
+    height: 10vh;
     display: flex;
 }
 
-button {
+.sort-button {
     font-family: 'Barlow Condensed', sans-serif;
     display: inline;
     background-color: #FC3C21;
@@ -93,12 +93,15 @@ button {
     padding: 10px 40px;
     border: 2px solid #fff;
     border-radius: 50px;
+    cursor: pointer;
 }
 
-button:hover {
+.sort-button:hover,
+ .sort-button:focus {
     background-color: #fff;
     color: #FC3C21;
     transition: all .75s;
+    outline: none;
 }
 
 /* Gallery Styles */
