@@ -8,18 +8,44 @@ import Gallery from './components/Gallery';
 import Footer from './components/Footer';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.clickSortDate = this.clickSortDate.bind(this);
-    this.clickSortViews = this.clickSortViews.bind(this);
-    this.clickSortTitle = this.clickSortTitle.bind(this);
-    this.state = {
-      photos: props.photos,
-      sortedPhotos: props.sortedPhotos
+  state = {
+    photos: [],
+    sortedPhotos: []
     };
-    this.apiKey = `a5e95177da353f58113fd60296e1d250`;
-    this.nasaUserID = `24662369@N07`;
-  }
+  apiKey = `a5e95177da353f58113fd60296e1d250`;
+  nasaUserID = `24662369@N07`;
+
+  // Sorting photo by the date taken using if else statement
+  sortByDate = items => {
+    return items.sort(function (a, b) {
+      const keyA = new Date(a.datetaken),
+        keyB = new Date(b.datetaken);
+      if (keyA > keyB) return -1;
+      if (keyA < keyB) return 1;
+      return 0;
+    });
+  };
+
+  clickSortDate = () => {
+    const sortedDates = this.sortByDate(this.state.sortedPhotos);
+    this.setState(() => ({ sortedPhotos: sortedDates })); // implicit return
+  };
+
+  // Sorting photos by numnber of views using ternary operator
+  clickSortViews = () => {
+    const sortByViews = this.state.sortedPhotos.sort((a, b) => b.views - a.views);
+    this.setState(() => ({ sortedPhotos: sortByViews })); // implicit return
+  };
+
+  // Sorting photos by title using ternary operator
+  clickSortTitle = () => {
+    const sortByTitle = this.state.sortedPhotos.sort((a, b) => a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1);
+    this.setState(() => {
+      return {
+        sortedPhotos: sortByTitle
+      } //explicit return
+    });
+  };
 
   // Lifecycle Method - Fetching the Data
   componentDidMount() {
@@ -37,39 +63,7 @@ class App extends Component {
           })
         }
       });
-  }
-
-  // Sorting photo by the date taken using if else statement
-  sortByDate = items => {
-    return items.sort(function(a, b) {
-      const keyA = new Date(a.datetaken),
-            keyB = new Date(b.datetaken);
-      if(keyA > keyB) return -1;
-      if(keyA < keyB) return 1;
-      return 0;
-    });
   };
-
-  clickSortDate = () => {
-    const sortedDates = this.sortByDate(this.state.sortedPhotos);
-    this.setState(() => ({ sortedPhotos: sortedDates })); // implicit return
-  };
-
-  // Sorting photos by numnber of views using ternary operator
-  clickSortViews = () => {
-    const sortByViews = this.state.sortedPhotos.sort((a, b) => b.views - a.views);
-    this.setState(() => ({ sortedPhotos: sortByViews })); // implicit return
-  }
-
-  // Sorting photos by title using ternary operator
-  clickSortTitle = () => {
-    const sortByTitle = this.state.sortedPhotos.sort((a, b) => a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1);
-    this.setState(() => {
-      return {
-        sortedPhotos: sortByTitle
-      } //explicit return
-    });
-  }
 
   render() {
     return (
@@ -96,9 +90,9 @@ class App extends Component {
   }
 }
 
-App.defaultProps = {
-  photos: [],
-  sortedPhotos: []
-}
+// App.defaultProps = {
+//   photos: [],
+//   sortedPhotos: []
+// }
 
 export default App;
