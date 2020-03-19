@@ -70,7 +70,7 @@ class App extends Component {
       <Fragment>
       <Header />
       <Router>
-        <Route path="/" exact render={() => 
+        <Route path="/" exact={true} render={() => 
           <Sort 
           clickSortDate={this.clickSortDate}
           clickSortViews={this.clickSortViews}
