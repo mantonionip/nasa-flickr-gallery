@@ -20,4 +20,4 @@ The app is fully responsive for all types of devices.
 * VSCode
 
 ## Code & Design by:
-[Sam Pilehvarian](https://samde.codes/)
+[Sam Pilehvarian](https://samdev.codes/)
